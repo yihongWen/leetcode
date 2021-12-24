@@ -37,6 +37,35 @@ public class Sort {
 
 
     /**
+     * 希尔排序（缩小增量排序）
+     * @param arr 给定数组
+     * @return
+     */
+    private static int[] shellSort(int[] arr){
+
+        int length = arr.length;
+
+        // 使用3k+1的增量：1，4，13，40，121
+        int k = 1;
+        while(3*k+1<length){
+            k = 3*k+1;
+        }
+        for (; k >=1 ; k = k/3) {
+            for (int i = k; i < length; i++) {
+                int j = i;
+                int temp = arr[j];
+                while(j-k>=0&&temp<arr[j-k]){
+                    //
+                    arr[j] = arr[j-k];
+                    j = j -k;
+                }
+                arr[j] = temp;
+            }
+        }
+        return arr;
+    }
+
+    /**
      * 用于验证自己写的排序是否正确
      * @throws Exception
      */
@@ -50,7 +79,10 @@ public class Sort {
                 ints[j] = random.nextInt();
             }
             // 使用插入排序
-            int[] myInsertSort = insertSort(ints);
+//            int[] myInsertSort = insertSort(ints);
+
+//           使用shell排序
+           int[] myInsertSort =  shellSort(ints);
 
             Arrays.sort(ints);
 
@@ -64,5 +96,7 @@ public class Sort {
 
     public static void main(String[] args) throws Exception {
         validSort();
+
+
     }
 }
