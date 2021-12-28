@@ -66,6 +66,74 @@ public class Sort {
     }
 
     /**
+     * 并归排序合并
+     * 一个数组存在两段已经是有序的数组进行合并成一个有序的数组
+     * @param arr 数组
+     * @param start 开始位置
+     * @param mid 中间（第一段结束）
+     * @param end 结束（第二段结束）
+     */
+    public static void merge(int[] arr,int start,int mid,int end){
+        // 初始化两个数组的长度
+        int n1 = mid - start+1;
+        int n2 = end - mid;
+
+        int[] leftArr = new int[n1+1];
+        int[] rightArr = new int[n2+1];
+        for (int i = 0; i < n1; i++) {
+            leftArr[i] = arr[start+i];
+        }
+
+        for (int i = 0; i < n2; i++) {
+            rightArr[i] = arr[mid+i+1];
+        }
+
+        leftArr[leftArr.length-1] = Integer.MAX_VALUE;
+        rightArr[rightArr.length-1] = Integer.MAX_VALUE;
+
+        // 合并排序
+        int leftIndex = 0;
+        int rightIndex = 0;
+        for (int i = start; i <= end ; i++) {
+            if (rightArr[rightIndex]<leftArr[leftIndex]){
+                arr[i] = rightArr[rightIndex];
+                rightIndex++;
+            }else {
+                arr[i] = leftArr[leftIndex];
+                leftIndex++;
+            }
+        }
+    }
+
+    /**
+     * 并归排序--分治
+     * @param arr
+     * @param start
+     * @param end
+     */
+    public static void mergeSortDivide(int[] arr, int start, int end){
+        if (arr==null || arr.length<1){
+            return;
+        }
+
+        if (start<end){
+            int q = (end+start)/2;
+//            调试用于输出
+//            System.out.println("当前的中间值q: "+q);
+            mergeSortDivide(arr,start,q);
+            mergeSortDivide(arr,q+1,end);
+            merge(arr,start,q,end);
+        }
+    }
+
+    public static int[] mergeSort(int[] arr){
+        int[] ints = Arrays.copyOf(arr, arr.length);
+        mergeSortDivide(ints,0,ints.length-1);
+        return ints;
+    }
+
+
+    /**
      * 用于验证自己写的排序是否正确
      * @throws Exception
      */
@@ -82,8 +150,10 @@ public class Sort {
 //            int[] myInsertSort = insertSort(ints);
 
 //           使用shell排序
-           int[] myInsertSort =  shellSort(ints);
+//           int[] myInsertSort =  shellSort(ints);
 
+//            并归排序
+            int[] myInsertSort =  mergeSort(ints);
             Arrays.sort(ints);
 
             if (!Arrays.equals(myInsertSort, ints)){
@@ -96,7 +166,5 @@ public class Sort {
 
     public static void main(String[] args) throws Exception {
         validSort();
-
-
     }
 }
