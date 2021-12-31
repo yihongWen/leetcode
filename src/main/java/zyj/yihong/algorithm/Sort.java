@@ -153,7 +153,10 @@ public class Sort {
 //           int[] myInsertSort =  shellSort(ints);
 
 //            并归排序
-            int[] myInsertSort =  mergeSort(ints);
+//            int[] myInsertSort =  mergeSort(ints);
+            int[] myInsertSort = Arrays.copyOf(ints, ints.length);
+            HeapSort.heapSort(myInsertSort);
+
             Arrays.sort(ints);
 
             if (!Arrays.equals(myInsertSort, ints)){
