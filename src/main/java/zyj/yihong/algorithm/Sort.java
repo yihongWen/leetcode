@@ -155,7 +155,8 @@ public class Sort {
 //            并归排序
 //            int[] myInsertSort =  mergeSort(ints);
             int[] myInsertSort = Arrays.copyOf(ints, ints.length);
-            HeapSort.heapSort(myInsertSort);
+//            HeapSort.heapSort(myInsertSort);
+            QuickSort.sort(myInsertSort);
 
             Arrays.sort(ints);
 
