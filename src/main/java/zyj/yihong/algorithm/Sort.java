@@ -144,7 +144,7 @@ public class Sort {
             int length = random.nextInt(49)+1;
             int[] ints = new int[length];
             for (int j = 0; j < length; j++) {
-                ints[j] = random.nextInt();
+                ints[j] = random.nextInt(20);
             }
             // 使用插入排序
 //            int[] myInsertSort = insertSort(ints);
@@ -156,8 +156,9 @@ public class Sort {
 //            int[] myInsertSort =  mergeSort(ints);
             int[] myInsertSort = Arrays.copyOf(ints, ints.length);
 //            HeapSort.heapSort(myInsertSort);
-            QuickSort.sort(myInsertSort);
-
+//            QuickSort.sort(myInsertSort);
+//            CountSort.sort(myInsertSort);
+            BucketSort.sort(myInsertSort);
             Arrays.sort(ints);
 
             if (!Arrays.equals(myInsertSort, ints)){
