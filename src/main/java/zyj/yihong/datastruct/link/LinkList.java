@@ -62,7 +62,9 @@ public class LinkList {
             if (curIndex == (index-1)){
                 LinkNode linkNode = new LinkNode(value);
                 LinkNode oldNext = cur.getNext();
-                oldNext.setPre(linkNode);
+                if(oldNext!=null){
+                    oldNext.setPre(linkNode);
+                }
                 linkNode.setNext(oldNext);
                 cur.setNext(linkNode);
                 linkNode.setPre(cur);
@@ -128,6 +130,32 @@ public class LinkList {
             curIndex++;
         }
         System.out.println(Arrays.toString(values));
+    }
+
+    /**
+     * 获取指定index的数据
+     * @param index
+     * @return
+     */
+    public int getIndexValue(int index){
+        if (index<0 || index>=size){
+            throw new RuntimeException("下标值不合法");
+        }
+        LinkNode curNode = head;
+        int cur = 0;
+        while (curNode!=null){
+            if (cur!=index){
+                curNode = curNode.getNext();
+                cur++;
+            }else {
+                return curNode.getData();
+            }
+        }
+        return 0;
+    }
+
+    public int getSize(){
+        return size;
     }
 
 
