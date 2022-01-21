@@ -18,31 +18,32 @@ public class BinaryTree {
 
     /**
      * 查询是否存在某个值：使用递归的方式
+     *
      * @param node
      * @param queryValue
      * @return
      */
-    public boolean existValue(Node node ,int queryValue){
-        if (node==null){
+    public boolean existValue(Node node, int queryValue) {
+        if (node == null) {
             return false;
         }
-        if (node.value==queryValue){
+        if (node.value == queryValue) {
             return true;
-        }else if (node.value<queryValue){
-            return existValue(node.right,queryValue);
-        }else {
-            return existValue(node.left,queryValue);
+        } else if (node.value < queryValue) {
+            return existValue(node.right, queryValue);
+        } else {
+            return existValue(node.left, queryValue);
         }
     }
 
-    public boolean existValueByLoop(int queryValue){
+    public boolean existValueByLoop(int queryValue) {
         Node cur = head;
-        while(cur!=null){
-            if (cur.value == queryValue){
+        while (cur != null) {
+            if (cur.value == queryValue) {
                 return true;
-            }else if (cur.value>queryValue){
+            } else if (cur.value > queryValue) {
                 cur = cur.left;
-            }else{
+            } else {
                 cur = cur.right;
             }
         }
@@ -51,14 +52,15 @@ public class BinaryTree {
 
     /**
      * 查询当前节点为树根的最大值
+     *
      * @return
      */
-    public Node queryMax(Node node){
-        if(node==null){
+    public Node queryMax(Node node) {
+        if (node == null) {
             return null;
         }
         Node cur = node;
-        while(cur.getRight()!=null){
+        while (cur.getRight() != null) {
             cur = cur.getRight();
         }
         return cur;
@@ -66,15 +68,16 @@ public class BinaryTree {
 
     /**
      * 查询当前节点为树根的最小值
+     *
      * @param node
      * @return
      */
-    public Node queryMin(Node node){
-        if(node==null){
+    public Node queryMin(Node node) {
+        if (node == null) {
             return null;
         }
         Node cur = node;
-        while(cur.getRight()!=null){
+        while (cur.getRight() != null) {
             cur = cur.getRight();
         }
         return cur;
@@ -83,24 +86,25 @@ public class BinaryTree {
 
     /**
      * 查询当前节点的后继
+     *
      * @param node
      * @return
      */
-    public Node querySuccessor(Node node){
+    public Node querySuccessor(Node node) {
         Node curNode = node;
-         // 如果节点为空或者当前节点就是最大节点，此时没有后继节点
-        if (curNode==null || Objects.equals(curNode,queryMax(head))){
+        // 如果节点为空或者当前节点就是最大节点，此时没有后继节点
+        if (curNode == null || Objects.equals(curNode, queryMax(head))) {
             return null;
         }
 
         // 如果当前节点右孩子不为空
-        if (curNode.getRight()!=null) {
+        if (curNode.getRight() != null) {
             return queryMin(curNode.getRight());
         }
 
         // 如果是右孩子，那么往上走(如果是走到了这一步就一定会有结果)
         Node pNode = curNode.getParent();
-        while(pNode!=null && Objects.equals(pNode.right,curNode)){
+        while (pNode != null && Objects.equals(pNode.right, curNode)) {
             curNode = pNode;
             pNode = pNode.getParent();
         }
@@ -110,24 +114,25 @@ public class BinaryTree {
 
     /**
      * 查询前驱
+     *
      * @param node
      * @return
      */
-    public Node queryPrecursor(Node node){
+    public Node queryPrecursor(Node node) {
         Node curNode = node;
         // 如果节点为空或者当前节点就是最大节点，此时没有后继节点
-        if (curNode==null || Objects.equals(curNode,queryMin(head))){
+        if (curNode == null || Objects.equals(curNode, queryMin(head))) {
             return null;
         }
 
         // 如果当前节点右孩子不为空
-        if (curNode.getLeft()!=null) {
+        if (curNode.getLeft() != null) {
             return queryMax(curNode.getLeft());
         }
 
         // 如果是左孩子，那么往上走(如果是走到了这一步就一定会有结果)
         Node pNode = curNode.getParent();
-        while(pNode!=null && Objects.equals(pNode.left,curNode)){
+        while (pNode != null && Objects.equals(pNode.left, curNode)) {
             curNode = pNode;
             pNode = pNode.getParent();
         }
@@ -136,52 +141,78 @@ public class BinaryTree {
 
     /**
      * 交换两颗子树
+     *
      * @param originNode
      * @param replaceNode
      */
-    public void transplant(Node originNode,Node replaceNode){
+    public void transplant(Node originNode, Node replaceNode) {
+        if (originNode == null) {
+            return;
+        }
+
+        // 如果是根节点
+        if (originNode.getParent() == null) {
+            head = replaceNode;
+            return;
+        }
+
+        // 将替换的节点指向父节点
+        Node parent = originNode.getParent();
+
+        // 确定父节点的左右
+        if (Objects.equals(parent.getLeft(), originNode)) {
+            parent.setLeft(replaceNode);
+        } else {
+            parent.setRight(replaceNode);
+        }
+
+        if (replaceNode != null) {
+            replaceNode.setParent(parent);
+        }
 
     }
 
     /**
      * 插入数据
+     *
      * @param i
      */
-    public void insert(int i){
+    public void insert(int i) {
 
     }
 
     /**
      * 删除节点
+     *
      * @param i
      */
-    public void delete(int i){
+    public void delete(int i) {
 
     }
 
-    public int[] preSearch(){
+    public int[] preSearch() {
         return null;
     }
 
-    public int[] midSearch(){
+    public int[] midSearch() {
         return null;
     }
 
-    public int[] afterSearch(){
+    public int[] afterSearch() {
         return null;
     }
 
-    public int[] depthSearch(){
+    public int[] depthSearch() {
         return null;
     }
 
-    public int[] breadthSearch(){
+    public int[] breadthSearch() {
         return null;
     }
 
 
     @Data
-    private static class Node{
+    private static class Node {
         private int value;
         private Node left;
         private Node right;
