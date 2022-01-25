@@ -12,7 +12,7 @@ import java.util.List;
  *
  *
  */
-public class RestoreIpAddresses {
+public class RestoreIpAddresses193 {
 
     /**
      * 当前结果集
