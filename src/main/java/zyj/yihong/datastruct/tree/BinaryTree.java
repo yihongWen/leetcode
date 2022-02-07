@@ -213,7 +213,39 @@ public class BinaryTree {
      * @param i
      */
     public void delete(int i) {
+        // 找到删除value为i的Node
+        Node deleteNode = head;
+        while(deleteNode!=null && deleteNode.value!=i){
+            if (deleteNode.value>i){
+                deleteNode = deleteNode.left;
+            }else {
+                deleteNode = deleteNode.right;
+            }
+        }
 
+        if (deleteNode==null){
+            return;
+        }
+
+        // 删除节点：
+        // 情况1：左右孩子其中存在为空的数据
+        if (deleteNode.left==null){
+            transplant(deleteNode,deleteNode.getRight());
+        }else if (deleteNode.right==null){
+            transplant(deleteNode,deleteNode.getLeft());
+        }else{
+            Node successorNode = querySuccessor(deleteNode);
+            // 情况2：删除节点的的后继节点两者不是是相邻节点
+            if (successorNode.parent!=deleteNode){
+                transplant(successorNode,successorNode.right);
+                successorNode.right = deleteNode.right;
+                successorNode.right.parent = successorNode;
+            }
+
+            transplant(deleteNode,successorNode);
+            successorNode.left = deleteNode.left;
+            deleteNode.left.parent = successorNode;
+        }
     }
 
     /**
