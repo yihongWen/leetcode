@@ -7,10 +7,10 @@ import java.util.List;
  * 鸟类
  * @author yihong
  */
-public class Bird extends pre3.Animal {
+public class Bird extends Animal {
     private boolean feather = true;
 
-    private final List<pre3.Wing> wings = new ArrayList<>();
+    private final List<Wing> wings = new ArrayList<>();
 
 
     /**

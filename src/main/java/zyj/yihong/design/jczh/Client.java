@@ -1,7 +1,8 @@
 package zyj.yihong.design.jczh;
 
-import pre4.combination.MyCombinationHashSet;
-import pre4.inherit.MyInheritHashSet;
+
+import zyj.yihong.design.jczh.combination.MyCombinationHashSet;
+import zyj.yihong.design.jczh.inherit.MyInheritHashSet;
 
 import java.util.Arrays;
 import java.util.HashSet;

@@ -1,6 +1,6 @@
 package zyj.yihong.design.uml;
 
-public class WildGoose extends Bird implements pre3.Fly {
+public class WildGoose extends Bird implements Fly {
 
 
     @Override

@@ -17,7 +17,7 @@ public class Animal {
      * @param oxygen 氧气
      * @param water 水分
      */
-    public void metabolism(pre3.Oxygen oxygen, pre3.Water water){
+    public void metabolism(Oxygen oxygen, Water water){
 
     }
 

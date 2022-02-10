@@ -9,6 +9,6 @@ import java.util.List;
  */
 
 public class GroupWildGoose {
-    private List<pre3.WildGoose> wildGooses = new ArrayList<>();
+    private List<WildGoose> wildGooses = new ArrayList<>();
 
 }

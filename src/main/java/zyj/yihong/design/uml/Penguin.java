@@ -1,14 +1,14 @@
 package zyj.yihong.design.uml;
 
-public class Penguin extends pre3.Bird {
+public class Penguin extends Bird {
 
-    private pre3.Weather weather;
+    private Weather weather;
 
-    public pre3.Weather getWeather() {
+    public Weather getWeather() {
         return weather;
     }
 
-    public void setWeather(pre3.Weather weather) {
+    public void setWeather(Weather weather) {
         this.weather = weather;
     }
 }
