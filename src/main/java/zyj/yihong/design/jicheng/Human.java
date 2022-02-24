@@ -1,4 +1,4 @@
-package zyj.yihong.design.jcjk;
+package zyj.yihong.design.jicheng;
 
 /**
  * 关于继承和实现的理解
