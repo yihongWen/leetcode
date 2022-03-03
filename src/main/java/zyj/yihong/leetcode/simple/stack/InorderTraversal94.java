@@ -37,6 +37,59 @@ public class InorderTraversal94 {
         return retArray;
     }
 
+    /**
+     * 先序遍历
+     * @param root
+     * @return
+     */
+    public List<Integer> preorderTraversal(TreeNode root) {
+        List<Integer> retArray = new ArrayList<>();
+        Stack<TreeNode> nodeStack = new Stack<>();
+        TreeNode cur = root;
+        while(cur!=null || nodeStack.size()>0){
+            while (cur!=null){
+                nodeStack.push(cur);
+                retArray.add(cur.val);
+                cur = cur.left;
+            }
+
+            if (nodeStack.size()>0){
+                TreeNode pop = nodeStack.pop();
+                cur = pop.right;
+            }
+        }
+        return retArray;
+    }
+
+
+    /**
+     * 后序遍历
+     * @param root
+     * @return
+     */
+    public List<Integer> postorderTraversal(TreeNode root) {
+        List<Integer> retArray = new ArrayList<>();
+        Stack<TreeNode> nodeStack = new Stack<>();
+        TreeNode cur = root;
+        TreeNode lastNode = cur;
+        while(cur!=null || nodeStack.size()>0){
+            while (cur!=null){
+                nodeStack.push(cur);
+                cur = cur.left;
+            }
+            cur = nodeStack.peek();
+            if (cur.right==null || cur.right == lastNode){
+                nodeStack.pop();
+                retArray.add(cur.val);
+                lastNode = cur;
+                cur = null;
+            }else {
+                cur = cur.right;
+            }
+        }
+        return retArray;
+    }
+
     public List<Integer> inorderTraversal2(TreeNode root) {
         inorderTraversalRecursion(root);
         return recursionList;
