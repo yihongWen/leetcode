@@ -1,5 +1,7 @@
 package zyj.yihong.leetcode.simple.stack;
 
+import java.util.Deque;
+import java.util.LinkedList;
 import java.util.Stack;
 
 /**
@@ -30,4 +32,23 @@ public class CQueue_J99 {
         }
         return stack2.pop();
     }
+
+    public int peek() {
+        if (stack1.size()==0 && stack2.size()==0){
+            return -1;
+        }
+        if (stack2.size()==0){
+            while (stack1.size()!=0){
+                Integer pop = stack1.pop();
+                stack2.push(pop);
+            }
+        }
+        return stack2.peek();
+    }
+
+    public boolean empty() {
+        return stack2.size()==0&& stack1.size()==0;
+    }
+
+
 }
