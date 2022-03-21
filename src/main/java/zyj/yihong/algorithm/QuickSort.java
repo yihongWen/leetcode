@@ -18,9 +18,9 @@ public class QuickSort {
 
     public static void quickSort(int[] arr, int start, int end) {
         if (start < end) {
-            int partition = partition(arr, start, end);
-            quickSort(arr, start, partition - 1);
-            quickSort(arr, partition + 1, end);
+            int[] result = partition2(arr, start, end);
+            quickSort(arr, start, result[1]);
+            quickSort(arr, result[0], end);
         }
     }
 
@@ -43,9 +43,48 @@ public class QuickSort {
         return i;
     }
 
+    /**
+     * 三路快排
+     * @param arr
+     * @param start
+     * @param end
+     * @return
+     */
+    public static int[] partition2(int[] arr, int start, int end) {
+       int lt = start;
+       int eq = start+1;
+       int gt = end+1;
+
+       int curValue = arr[start];
+
+       while (eq<gt){
+            if (arr[eq]==curValue){
+                eq++;
+            }else if (arr[eq]<curValue){
+                int temp = arr[eq];
+                arr[eq] = arr[lt+1];
+                arr[lt+1] = temp;
+                eq ++;
+                lt ++;
+
+            }else if (arr[eq]>curValue){
+                int temp = arr[eq];
+                arr[eq] =arr[gt-1];
+                arr[gt-1] = temp;
+                gt--;
+            }
+       }
+        arr[start] = arr[lt];
+        arr[lt] = curValue;
+
+        int[] result = {gt,lt};
+        return result;
+    }
+
     public static void main(String[] args) {
-        int[] arr = {2,8,7,1,3,5,6,4};
+        int[] arr = {5,2,3,1};
         sort(arr);
         System.out.println(Arrays.toString(arr));
+
     }
 }
