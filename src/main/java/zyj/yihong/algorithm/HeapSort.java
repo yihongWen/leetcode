@@ -30,19 +30,6 @@ public class HeapSort {
     }
 
     /**
-     * 获取当前节点的父节点
-     * @param i
-     * @return
-     */
-    private int getParent(int i) {
-        if (i % 2 == 0) {
-            return i / 2 - 1;
-        } else {
-            return i / 2;
-        }
-    }
-
-    /**
      * 维护堆的性质
      */
     private static void heapify(int[] arr, int index,int curHeapSize) throws Exception {

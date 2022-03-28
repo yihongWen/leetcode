@@ -17,8 +17,7 @@ public class Sort {
     private static int[] insertSort(int[] arr){
 
         int[] ints = Arrays.copyOf(arr, arr.length);
-
-        if (ints==null||ints.length<2){
+        if (ints.length<2){
             return ints;
         }
 
@@ -42,9 +41,7 @@ public class Sort {
      * @return
      */
     private static int[] shellSort(int[] arr){
-
         int length = arr.length;
-
         // 使用3k+1的增量：1，4，13，40，121
         int k = 1;
         while(3*k+1<length){
@@ -118,8 +115,6 @@ public class Sort {
 
         if (start<end){
             int q = (end+start)/2;
-//            调试用于输出
-//            System.out.println("当前的中间值q: "+q);
             mergeSortDivide(arr,start,q);
             mergeSortDivide(arr,q+1,end);
             merge(arr,start,q,end);
