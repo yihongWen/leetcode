@@ -1,4 +1,4 @@
-package zyj.yihong.lang;
+package zyj.yihong.lang.stream;
 
 import java.util.ArrayList;
 import java.util.Iterator;

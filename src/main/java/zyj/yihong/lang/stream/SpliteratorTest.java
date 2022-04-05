@@ -1,4 +1,4 @@
-package zyj.yihong.lang;
+package zyj.yihong.lang.stream;
 
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
