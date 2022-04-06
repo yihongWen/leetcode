@@ -21,4 +21,11 @@ public class FindLength718 {
         return maxLength;
     }
 
+    public static void main(String[] args) {
+        int ax = 1;
+        while (true){
+            ax = ax+ax;
+        }
+    }
+
 }
