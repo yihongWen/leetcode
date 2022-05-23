@@ -6,7 +6,6 @@ import org.openjdk.jmh.runner.Runner;
 import org.openjdk.jmh.runner.RunnerException;
 import org.openjdk.jmh.runner.options.Options;
 import org.openjdk.jmh.runner.options.OptionsBuilder;
-import sun.jvm.hotspot.utilities.Assert;
 
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
