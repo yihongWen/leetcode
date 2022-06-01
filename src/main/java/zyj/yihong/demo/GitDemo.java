@@ -5,5 +5,7 @@ public class GitDemo {
         // log 1
 
         // log 2
+
+        // log 3
     }
 }
