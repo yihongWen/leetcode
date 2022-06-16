@@ -34,7 +34,6 @@ public class MySkipList {
 
             if (cur.down!=null){
                 cur=cur.down;
-                level--;
             }
         }
         if (pre){
@@ -60,7 +59,9 @@ public class MySkipList {
         // 判断当前节点是否需要往上层添加
         int curLevel = 1;
         int i = random.nextInt() & 1;
+        System.out.println("value:"+value);
         while (i==0){
+            System.out.println("i:"+i);
             i = random.nextInt() & 1;
             if (curLevel>= maxLevelListNode.getLevel()){
                 this.addLevelListNode(this.maxLevelListNode.getLevel());
@@ -140,9 +141,14 @@ public class MySkipList {
         mySkipList.insert(9);
         mySkipList.insert(18);
         mySkipList.insert(37);
-        mySkipList.search(8,false);
-        mySkipList.search(18,false);
+        Node search = mySkipList.search(8, false);
+        System.out.println(search==null?null:search.value);
+        Node search1 = mySkipList.search(18, false);
+        System.out.println(search1==null?null:search1.value);
         mySkipList.delete(10);
         mySkipList.delete(18);
+
+        Node search2 = mySkipList.search(18, false);
+        System.out.println(search2==null?null:search2.value);
     }
 }
