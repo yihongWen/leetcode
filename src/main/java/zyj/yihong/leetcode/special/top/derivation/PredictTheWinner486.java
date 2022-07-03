@@ -1,8 +1,5 @@
 package zyj.yihong.leetcode.special.top.derivation;
 
-import org.apache.commons.math3.analysis.function.Max;
-import zyj.yihong.lang.demo.MainThread;
-
 /**
  * 486. 预测赢家
  * 给你一个整数数组 nums 。玩家 1 和玩家 2 基于这个数组设计了一个游戏。

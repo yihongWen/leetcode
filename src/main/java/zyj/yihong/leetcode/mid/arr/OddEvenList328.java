@@ -1,7 +1,5 @@
 package zyj.yihong.leetcode.mid.arr;
 
-import java.util.List;
-
 /**
  * 328. 奇偶链表
  */

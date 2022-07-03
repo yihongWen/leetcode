@@ -1,6 +1,5 @@
 package zyj.yihong.leetcode.mid.binary_search;
 
-import java.lang.reflect.Array;
 import java.util.Arrays;
 
 /**

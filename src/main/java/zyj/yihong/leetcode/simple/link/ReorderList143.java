@@ -1,7 +1,5 @@
 package zyj.yihong.leetcode.simple.link;
 
-import java.util.List;
-
 /**
  * 143. 重排链表
  * 给定一个单链表 L 的头节点 head ，单链表 L 表示为：

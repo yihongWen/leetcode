@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.TreeSet;
-import java.util.stream.Collectors;
 
 /**
  * 2225. 找出输掉零场或一场比赛的玩家

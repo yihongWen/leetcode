@@ -1,6 +1,5 @@
 package zyj.yihong.leetcode.mid.tree;
 
-import zyj.yihong.leetcode.utils.ListNode;
 import zyj.yihong.leetcode.utils.TreeNode;
 
 import java.util.ArrayList;

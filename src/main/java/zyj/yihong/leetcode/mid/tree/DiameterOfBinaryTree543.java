@@ -1,7 +1,5 @@
 package zyj.yihong.leetcode.mid.tree;
 
-import zyj.yihong.leetcode.mid.queue.MaxQueue_J2_59;
-
 public class DiameterOfBinaryTree543 {
     private int maxLength = 0;
     public int diameterOfBinaryTree(TreeNode root) {

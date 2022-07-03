@@ -1,7 +1,5 @@
 package zyj.yihong.leetcode.mid.stack;
 
-import zyj.yihong.leetcode.simple.stack.InorderTraversal94;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;

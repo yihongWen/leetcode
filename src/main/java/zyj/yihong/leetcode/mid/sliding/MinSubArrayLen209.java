@@ -1,7 +1,5 @@
 package zyj.yihong.leetcode.mid.sliding;
 
-import zyj.yihong.leetcode.mid.queue.MaxQueue_J2_59;
-
 /**
  * 209. 长度最小的子数组
  * 给定一个含有 n 个正整数的数组和一个正整数 target 。

@@ -1,7 +1,6 @@
 package zyj.yihong.leetcode.mid.tree;
 
 import java.util.Arrays;
-import java.util.Collections;
 
 /**
  * 473. 火柴拼正方形

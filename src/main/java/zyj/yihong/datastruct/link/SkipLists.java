@@ -1,8 +1,6 @@
 package zyj.yihong.datastruct.link;
 
-import java.io.File;
 import java.util.Random;
-import java.util.Scanner;
 
 public class SkipLists {
     public static void main(String[] args) {

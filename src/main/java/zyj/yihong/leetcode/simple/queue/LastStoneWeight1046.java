@@ -1,6 +1,5 @@
 package zyj.yihong.leetcode.simple.queue;
 
-import java.util.Comparator;
 import java.util.PriorityQueue;
 
 /**

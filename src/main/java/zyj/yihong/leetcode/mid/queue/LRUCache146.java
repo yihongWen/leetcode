@@ -1,6 +1,8 @@
 package zyj.yihong.leetcode.mid.queue;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.Map;
 
 public class LRUCache146 {
 

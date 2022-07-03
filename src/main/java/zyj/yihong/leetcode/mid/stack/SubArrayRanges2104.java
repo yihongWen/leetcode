@@ -1,7 +1,5 @@
 package zyj.yihong.leetcode.mid.stack;
 
-import sun.applet.Main;
-
 import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.Stack;

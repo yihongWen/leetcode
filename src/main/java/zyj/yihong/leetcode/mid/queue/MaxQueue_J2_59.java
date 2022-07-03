@@ -1,7 +1,6 @@
 package zyj.yihong.leetcode.mid.queue;
 
 import com.google.gson.Gson;
-import com.sun.jmx.remote.internal.ArrayQueue;
 
 import java.util.*;
 

@@ -1,7 +1,5 @@
 package zyj.yihong.leetcode.mid.queue;
 
-import javafx.beans.binding.ObjectExpression;
-
 import java.util.Arrays;
 
 /**

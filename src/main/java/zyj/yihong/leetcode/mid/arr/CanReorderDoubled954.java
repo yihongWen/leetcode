@@ -1,8 +1,10 @@
 package zyj.yihong.leetcode.mid.arr;
 
-import java.util.*;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 /**
  * 954. 二倍数对数组

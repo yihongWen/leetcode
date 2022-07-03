@@ -1,7 +1,5 @@
 package zyj.yihong.leetcode.mid.sort;
 
-import java.util.List;
-
 /**
  * 对链表进行插入排序
  */

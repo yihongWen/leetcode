@@ -1,7 +1,5 @@
 package zyj.yihong.leetcode.simple.queue;
 
-import com.sun.jmx.remote.internal.ArrayQueue;
-
 import java.util.ArrayDeque;
 import java.util.HashMap;
 import java.util.Map;
