@@ -25,7 +25,6 @@ public class PartitionLabels_M_763 {
                 start = i;
             }
         }
-
         return ans;
     }
 }
