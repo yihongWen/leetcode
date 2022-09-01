@@ -1,5 +1,6 @@
 package zyj.yihong.leetcode.random_select.aug;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -96,5 +97,9 @@ public class ValidPath_S_1917 {
             }
         }
         return false;
+    }
+
+    public static void main(String[] args) {
+        List<Integer>[] graph = (List<Integer>[]) Array.newInstance(List.class);
     }
 }
