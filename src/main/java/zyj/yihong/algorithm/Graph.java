@@ -11,7 +11,7 @@ public class Graph {
     int[][] graphMatrix;
 
     // 图的节点大小
-    private int nodeSize;
+    public int nodeSize;
 
     public Graph(int[][] graphMatrix) {
         this.graphMatrix = graphMatrix;
@@ -54,6 +54,7 @@ public class Graph {
         return ans;
     }
 
+    // prim算法
     private List<EdgeData> prim(){
         //遍历图中的每一个顶点
         List<EdgeData> ans = new ArrayList<>();
@@ -130,6 +131,35 @@ public class Graph {
         return ans;
     }
 
+    // floyd 基于动态规划
+    private void floyd(int[][] ans,int[][] path){
+        int inf = -1;
+        // 基于两个点的情况初始化ans矩阵、以及path矩阵
+        System.arraycopy(graphMatrix,0,ans,0,graphMatrix.length);
+        for (int i = 0; i < graphMatrix.length; i++) {
+            Arrays.fill(path[i],inf);
+        }
+
+        // 一次加入每一个点
+        for (int k = 0; k < graphMatrix.length; k++) {
+            // 计算对其他节点的影响
+            for (int i = 0; i < graphMatrix.length; i++) {
+                for (int j = 0; j < graphMatrix.length; j++) {
+                    if (ans[i][k]!=inf&&ans[k][j]!=inf){
+                        if (ans[i][j]!=inf&&ans[i][k] + ans[k][j]<ans[i][j]) {
+                            ans[i][j] = ans[i][k] + ans[k][j];
+                            path[i][j] = k;
+                        }else if (ans[i][j]==inf) {
+                            ans[i][j] = ans[i][k]+ans[k][j];
+                            path[i][j] = k;
+                        }
+                    }
+                }
+            }
+        }
+
+    }
+
 
     // 获取某个node指向的end节点
     private int getEndPoint(int[] pointInfoEdgeArr,int nodeIndex){
@@ -172,12 +202,19 @@ public class Graph {
 
     public static void main(String[] args) {
         int inf = -1;
+//        int[][] matrix = {
+//                {0,inf,inf,6,inf},
+//                {5,0,2,inf,inf},
+//                {inf,inf,0,inf,2},
+//                {inf,inf,inf,0,inf},
+//                {1,inf,inf,3,0}
+//        };
+
         int[][] matrix = {
-                {0,inf,inf,6,inf},
-                {5,0,2,inf,inf},
-                {inf,inf,0,inf,2},
-                {inf,inf,inf,0,inf},
-                {1,inf,inf,3,0}
+                {0,2,6,4},
+                {inf,0,3,inf},
+                {7,inf,0,1},
+                {5,inf,12,0},
         };
         Graph graph = new Graph(matrix);
 //        List<EdgeData> kruskal = graph.kruskal();
@@ -187,7 +224,12 @@ public class Graph {
 //            System.out.println("start:"+edgeData.start+"->"+"end:"+edgeData.end);
 //        }
 //        System.out.println(weight);
-        List<EdgeData> prim = graph.prim();
+//        List<EdgeData> prim = graph.prim();
+
+        int[][] ans = new int[graph.nodeSize][graph.nodeSize];
+
+        int[][] path = new int[graph.nodeSize][graph.nodeSize];
+        graph.floyd(ans,path);
         System.out.println();
 
 
