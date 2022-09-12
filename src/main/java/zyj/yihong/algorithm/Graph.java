@@ -58,11 +58,11 @@ public class Graph {
     private List<EdgeData> prim(){
         //遍历图中的每一个顶点
         List<EdgeData> ans = new ArrayList<>();
-        for (int i = 1; i < nodeSize; i++) {
+        for (int i = 0; i < 1; i++) {
             ans.clear();
-            int index=0;                    // prim最小树的索引，即prims数组的索引
-            int[] prims  = new int[nodeSize];  // prim最小树的结果数组
-            int[][] weights = new int[nodeSize][2];   // 顶点间边的权值
+            int index=0;
+            int[] prims  = new int[nodeSize];
+            int[][] weights = new int[nodeSize][2];
 
 
             // 加入当前顶点
@@ -161,6 +161,81 @@ public class Graph {
     }
 
 
+    // dijkstra 算法
+    private void dijkstra(int sourceNode,int[] ans,int[] path){
+        // 初始化
+        boolean[] flag = new boolean[graphMatrix.length];
+        flag[sourceNode] = true;
+        for (int i = 0; i < graphMatrix.length; i++) {
+            ans[i] = graphMatrix[sourceNode][i];
+        }
+        ans[sourceNode] = 0;
+
+
+        int selectNode = 0;
+        for (int i = 1; i < graphMatrix.length; i++) {
+            int min = -1;
+            for (int j = 0; j < graphMatrix.length; j++) {
+                if (!flag[j]&&(min==-1 || (ans[j]!=-1 &&ans[j]<min))){
+                    selectNode = j;
+                    min = ans[j];
+                }
+            }
+
+            // 将当前选择的进行标记
+            flag[selectNode] = true;
+
+            // 计算加入当前点引起的变化
+            for (int j = 0; j < graphMatrix.length; j++) {
+                if ((min!=-1&&graphMatrix[selectNode][j]!=-1) && (ans[j]==-1 || ans[j]>min+graphMatrix[selectNode][j])){
+                    ans[j] = min+graphMatrix[selectNode][j];
+                    path[j] = selectNode;
+                }
+            }
+        }
+
+
+    }
+
+
+    // bellmanFord算法
+    private boolean bellmanFord(int sourceNode,int[] ans,int[] path){
+        // 获取所有的边信息
+        List<EdgeData> edgeDataList = getAllEdge();
+        Arrays.fill(ans,-1);
+        Arrays.fill(path,-1);
+        ans[sourceNode] = 0;
+        path[sourceNode] = sourceNode;
+
+        // 对边松弛n-1次
+        for (int i = 0; i < graphMatrix.length - 1; i++) {
+
+            // 处理每一条边
+            for (EdgeData edgeData : edgeDataList) {
+                int start = edgeData.start;
+                int end = edgeData.end;
+                int value = edgeData.value;
+                if ((ans[start]!=-1) && ((ans[end]==-1) || ans[end]>ans[start]+value)){
+                    ans[end] = ans[start]+value;
+                    path[end] = start;
+                }
+            }
+        }
+
+
+        // 在执行一次是否存在负边权
+        for (EdgeData edgeData : edgeDataList) {
+            int start = edgeData.start;
+            int end = edgeData.end;
+            int value = edgeData.value;
+            if ((ans[start]!=-1) && (ans[end]!=-1) && ans[end]>ans[start]+value){
+                return false;
+            }
+        }
+
+        return true;
+    }
+
     // 获取某个node指向的end节点
     private int getEndPoint(int[] pointInfoEdgeArr,int nodeIndex){
         while (pointInfoEdgeArr[nodeIndex]!=0){
@@ -203,35 +278,32 @@ public class Graph {
     public static void main(String[] args) {
         int inf = -1;
 //        int[][] matrix = {
-//                {0,inf,inf,6,inf},
-//                {5,0,2,inf,inf},
-//                {inf,inf,0,inf,2},
-//                {inf,inf,inf,0,inf},
-//                {1,inf,inf,3,0}
+//                {0,2,5,inf,inf},
+//                {inf,0,2,6,inf},
+//                {inf,inf,0,7,1},
+//                {inf,inf,2,0,4},
+//                {inf,inf,inf,inf,0},
+//
 //        };
+//        Graph graph = new Graph(matrix);
+//        int[] ans = new int[graph.graphMatrix.length];
+//        int[] path = new int[graph.graphMatrix.length];
+//        boolean b = graph.bellmanFord(0, ans, path);
+//        System.out.println(b);
+//        System.out.println(Arrays.toString(ans));
+//        System.out.println(Arrays.toString(path));
 
-        int[][] matrix = {
-                {0,2,6,4},
-                {inf,0,3,inf},
-                {7,inf,0,1},
-                {5,inf,12,0},
+
+        int[][] matrix1 = {
+                {0,inf,inf,6,inf},
+                {5,0,2,inf,inf},
+                {inf,inf,0,inf,2},
+                {inf,inf,inf,0,inf},
+                {1,inf,inf,3,0}
         };
-        Graph graph = new Graph(matrix);
-//        List<EdgeData> kruskal = graph.kruskal();
-//        int weight = 0;
-//        for (EdgeData edgeData : kruskal) {
-//            weight+=edgeData.value;
-//            System.out.println("start:"+edgeData.start+"->"+"end:"+edgeData.end);
-//        }
-//        System.out.println(weight);
-//        List<EdgeData> prim = graph.prim();
-
-        int[][] ans = new int[graph.nodeSize][graph.nodeSize];
-
-        int[][] path = new int[graph.nodeSize][graph.nodeSize];
-        graph.floyd(ans,path);
-        System.out.println();
-
+        Graph graph1 = new Graph(matrix1);
+        List<EdgeData> prim = graph1.prim();
+        System.out.println(prim);
 
     }
 }
