@@ -275,6 +275,78 @@ public class Graph {
         }
     }
 
+    // 并查集实现
+    static class UnionFind{
+        // 元数据信息，start->end 权重value
+        List<EdgeData> sourceInfo;
+
+        // 节点的个数（为了方便，也可用从所有的边信息给出）
+        int size;
+
+        int[] point;
+        int[] weight;
+        int[] rank;
+
+        public UnionFind(List<EdgeData> sourceInfo,int size) {
+            this.sourceInfo = sourceInfo;
+            this.size = size;
+            init();
+        }
+
+        private void init(){
+            // 初始化将每个点指向自身，权重设置为1
+            point = new int[size];
+            weight = new int[size];
+            rank = new int[size];
+            for (int i = 0; i < size; i++) {
+                point[i] = i;
+            }
+            Arrays.fill(weight,1);
+            Arrays.fill(rank,1);
+        }
+
+
+        private void union(){
+            // 处理每一条边的两个点
+            for (EdgeData edgeData : sourceInfo) {
+                int start = edgeData.start;
+                int end = edgeData.end;
+                int value = edgeData.value;
+
+                int f1 = find1(start);
+                int f2 = find1(end);
+
+                // 两个节点所在树的根节点为相同，那么直接返回
+                if (f1==f2){
+                    return;
+                }
+
+                if (rank[start]>rank[end]){
+                    point[f2] = f1;
+                    weight[f2] = weight[end]*value/weight[start];
+                }else {
+                    point[f1] = f2;
+                    weight[f1] = weight[start]/weight[end] * value ;
+                }
+            }
+        }
+
+        // 直接一个个往上查找
+        private int find1(int node){
+            int curNode = node;
+            while (point[curNode]!=curNode){
+                curNode = node;
+                int pNode = point[curNode];
+                point[node] = point[point[curNode]];
+                weight[node]*=point[pNode];
+                curNode = point[node];
+            }
+            return curNode;
+        }
+
+
+    }
+
     public static void main(String[] args) {
         int inf = -1;
 //        int[][] matrix = {
