@@ -35,4 +35,19 @@ public class MaxChunksToSorted_M_769 {
 
         return stack.size();
     }
+
+    public int maxChunksToSorted1(int[] arr) {
+        // 数组中数据为0～n-1
+        // 只需要找到段中最大值==index时,则说明后面段没有更小的值
+        int curMax = 0;
+        int ans = 0;
+
+        for (int i = 0; i < arr.length; i++) {
+             curMax = Math.max(curMax, arr[i]);
+            if (curMax==i){
+                ans++;
+            }
+        }
+        return ans;
+    }
 }
