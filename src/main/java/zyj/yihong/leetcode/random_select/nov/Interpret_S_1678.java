@@ -17,7 +17,6 @@ public class Interpret_S_1678 {
                 }
             }
         }
-
         return sb.toString();
     }
 }
