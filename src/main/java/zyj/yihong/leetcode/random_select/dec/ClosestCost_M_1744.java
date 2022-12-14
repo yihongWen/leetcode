@@ -60,13 +60,13 @@ public class ClosestCost_M_1744 {
                     int selectCount = i / preStateSum[j] % 3;
                     selectCurCost += toppingCosts[j] * selectCount;
                     // 这里还可以继续优化 范围限定在当前ans跟target所在的区间
-                    if (selectCurCost>=target ){
+                    if (selectCurCost >= target) {
                         break;
                     }
                 }
 
                 // 当前状态跟target之间的关系
-                if ((Math.abs(selectCurCost - target) < Math.abs(ans - target)) || ( Math.abs(selectCurCost-target)==Math.abs(ans-target) && selectCurCost - target < ans - target)) {
+                if ((Math.abs(selectCurCost - target) < Math.abs(ans - target)) || (Math.abs(selectCurCost - target) == Math.abs(ans - target) && selectCurCost - target < ans - target)) {
                     ans = selectCurCost;
                 }
             }
@@ -76,12 +76,58 @@ public class ClosestCost_M_1744 {
     }
 
 
+    public int closestCostDp(int[] baseCosts, int[] toppingCosts, int target) {
+        int min = Arrays.stream(baseCosts).min().getAsInt();
+        if (min>=target){
+            return min;
+        }
+
+        // 使用dp,根据题意定义dp数组的大小：1 <= baseCosts[i], toppingCosts[i] <= pow(10,4)  1 <= target <= pow(10,4)
+        int size = (target-min)*2+1+min;
+        boolean[] dp = new boolean[size];
+
+        // 用baseCost初始化dp
+        for (int i = 0; i < baseCosts.length; i++) {
+            if (baseCosts[i]>=dp.length){
+                continue;
+            }
+            dp[baseCosts[i]] = true;
+        }
+
+        // 计算dp： dp(j) = dp(j-t(i))
+        for (int i = 0; i < toppingCosts.length * 2; i++) {
+            for (int k = size-1; k >= 0; k--) {
+                if (dp[k]) {
+                    continue;
+                }
+
+                if (k >= toppingCosts[i / 2] && dp[k - toppingCosts[i / 2]]) {
+                    dp[k] = true;
+                }
+
+            }
+        }
+
+        for (int i = 0; i <= target-min; i++) {
+            if (i <= target && dp[target - i]) {
+                return target - i;
+            }
+
+            // 右侧
+            if (dp[target + i]) {
+                return target + i;
+            }
+        }
+        return min;
+    }
+
+
     public static void main(String[] args) {
         ClosestCost_M_1744 closestCost_m_1744 = new ClosestCost_M_1744();
-        int[] a = {3,2};
-        int[] b = {3};
-        int target = 10;
-        int i = closestCost_m_1744.closestCostV1(a, b, target);
+        int[] a = {1,10,10};
+        int[] b = {7,5,1,1,1};
+        int target = 5;
+        int i = closestCost_m_1744.closestCostDp(a, b, target);
         System.out.println(i);
 
     }
